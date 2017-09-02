@@ -2,28 +2,19 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
-{
-    use Notifiable;
+class User extends Model {
+    use Uuids;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $table = 'users';
+    protected $fillable = ['id', 'email', 'password', 'first_name', 'last_name',
+    'facebook_token', 'google_token', 'grender', 'birth_day', 'hash_key', 'bio', 
+    'phone_number', 'avatar_url', 'locked', 'actived'];
+    protected $hidden = [];
+    public $timestamps = true;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function posts() {
+        return $this->hasMany('App\Post', 'author');
+    }
 }

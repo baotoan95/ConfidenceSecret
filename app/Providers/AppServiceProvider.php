@@ -1,9 +1,11 @@
 <?php
 
+namespace App;
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Webpatser\Uuid\Uuid;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,4 +28,5 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
 }
