@@ -1,0 +1,172 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "ConfidenceSecret",
+        "contact": {
+            "name": "BTIT95",
+            "url": "http://btit95.esy.es"
+        },
+        "version": "0.0.12"
+    },
+    "host": "localhost:85",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/posts": {
+            "get": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "List of posts.",
+                "description": "Returns list of posts",
+                "operationId": "api.posts.all",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized action"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Update a post.",
+                "description": "Update a post",
+                "operationId": "api.posts.update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Post object",
+                        "in": "Body of request",
+                        "description": "Post object that need to update (including id)",
+                        "required": true,
+                        "type": "Json"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized action"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Store a post.",
+                "description": "Store a post",
+                "operationId": "api.posts.store",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Post object",
+                        "in": "Body of request",
+                        "description": "Post object that need to store",
+                        "required": true,
+                        "type": "Json"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized action"
+                    }
+                }
+            }
+        },
+        "/posts/{id}": {
+            "get": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "View a post.",
+                "description": "Return a post by id",
+                "operationId": "api.posts.show",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "parameter",
+                        "description": "Id of post",
+                        "required": true,
+                        "type": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized action"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Delete a post.",
+                "description": "Delete a post by id",
+                "operationId": "api.posts.delete",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "parameter",
+                        "description": "Id of post",
+                        "required": true,
+                        "type": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized action"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "description": "Class ApiController",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "description": "Class ApiController",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

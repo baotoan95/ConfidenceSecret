@@ -4,9 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Machine
+ *
+ * @package App
+ *
+ * @SWG\Definition(
+ *   definition="Machine",
+ *   required={"name"}
+ * )
+ *
+ */
 class Post extends Model {
     use Uuids;
 
+    /**
+     * @SWG\Property(format="string")
+     * @var string
+     */
     protected $table = "posts";
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'title', 'content', 'like_count', 
