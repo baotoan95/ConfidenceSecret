@@ -85,3 +85,12 @@ Route::post('posts', 'PostApiController@store');
 Route::get('posts/{id}', 'PostApiController@show');
 Route::delete('posts/{id}', 'PostApiController@delete');
 Route::put('posts', 'PostApiController@update');
+
+/**
+* User management
+**/
+Route::post('auth/register', 'UserApiController@register');
+Route::post('auth/login', 'UserApiController@login');
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::get('user', 'UserApiController@getAuth');
+});

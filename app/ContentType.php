@@ -11,6 +11,6 @@ class ContentType extends Model {
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'name'];
     protected $hidden = [];
-    protected $incrementing = false;
+    public $incrementing = false;
     public $timestamps = false;
 }

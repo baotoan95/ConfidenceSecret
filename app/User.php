@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model {
+class User extends Authenticatable {
     use Uuids;
 
     protected $table = 'users';
@@ -13,7 +15,7 @@ class User extends Model {
     'facebook_token', 'google_token', 'grender', 'birth_day', 'hash_key', 'bio', 
     'phone_number', 'avatar_url', 'locked', 'actived'];
     protected $hidden = [];
-    protected $incrementing = false;
+    public $incrementing = false;
     public $timestamps = true;
 
     public function posts() {
