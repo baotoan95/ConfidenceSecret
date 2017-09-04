@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Http\Requests\PostRequest;
 
 class PostApiController extends Controller
 {
@@ -16,69 +17,36 @@ class PostApiController extends Controller
         return Post::all()->tojSON();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        echo "create";
+    public function store(PostRequest $request) {
+        $post = new Post;
+        $post->title = $request->title;
+        $post->content = 'Hi';
+        $post->like_count = 3;
+        $post->view_count = 5;
+        $post->author = '843606d0-8fee-11e7-8802-bc77373da5f4';
+        $post->content_type = '9feb1c9b-8fee-11e7-8802-bc77373da5f4';
+        $post->category = '89d95487-8fa9-11e7-aebb-bc77373da5f4';
+
+        if(!$post->save()) {
+            return response('Something is wrong', 400);
+        }
+        
+        return response($post->id, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        echo "store";
+    public function show($id) {
+        return Post::find($id)->tojSON();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        echo "show";
+    public function delete($id) {
+        return Post::destroy($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        echo "edit";
-    }
+    public function update(PostRequest $request) {
+        $post = Post::find($request->id);
+        $post->title = $request->title;
+        $post->save();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        echo "update";
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        echo "destroy";
+        return response($post, 200);
     }
 }

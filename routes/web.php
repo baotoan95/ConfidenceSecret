@@ -63,4 +63,25 @@ Route::get('/post', function() {
     echo '</pre>';
 });
 
-Route::resource('posts', 'PostApiController', ['except' => ['']]);
+use Webpatser\Uuid\Uuid;
+
+Route::get('/demo', function() {
+    $post = new App\Post;
+    $post->title = 'Hello Kds ds';
+    $post->content = 'Hi';
+    $post->like_count = 3;
+    $post->view_count = 5;
+    $post->author = '843606d0-8fee-11e7-8802-bc77373da5f4';
+    $post->content_type = '9feb1c9b-8fee-11e7-8802-bc77373da5f4';
+    $post->category = '89d95487-8fa9-11e7-aebb-bc77373da5f4';
+    
+    $post->save();
+
+    echo $post->id;
+});
+
+Route::get('posts', 'PostApiController@index');
+Route::post('posts', 'PostApiController@store');
+Route::get('posts/{id}', 'PostApiController@show');
+Route::delete('posts/{id}', 'PostApiController@delete');
+Route::put('posts', 'PostApiController@update');

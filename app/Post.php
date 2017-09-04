@@ -8,9 +8,11 @@ class Post extends Model {
     use Uuids;
 
     protected $table = "posts";
+    protected $primaryKey = 'id';
     protected $fillable = ['id', 'title', 'content', 'like_count', 
     'view_count', 'author', 'content_type', 'category'];
     protected $hidden = [];
+    public $incrementing = false;
     public $timestamps = true;
 
     public function author() {

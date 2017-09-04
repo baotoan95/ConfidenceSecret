@@ -8,7 +8,9 @@ class ContentType extends Model {
     use Uuids;
 
     protected $table = 'content_types';
+    protected $primaryKey = 'id';
     protected $fillable = ['id', 'name'];
     protected $hidden = [];
-    public $timestamps = true;
+    protected $incrementing = false;
+    public $timestamps = false;
 }
