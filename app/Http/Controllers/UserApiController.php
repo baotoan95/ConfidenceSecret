@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Handler;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use JWTAuth;
@@ -16,10 +17,14 @@ class UserApiController extends ApiController {
     }
    
     public function register(Request $request){
+        try {
         $user = $this->user->create([
           'email' => $request->get('email'),
           'password' => bcrypt($request->get('password'))
         ]);
+        } catch (Exception $e) {
+            echo "error";
+        }
         return response()->json(['status'=>true,'message'=>'User created successfully','data'=>$user]);
     }
     
